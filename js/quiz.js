@@ -1,41 +1,28 @@
 /*
- * Simple quiz generator.
- *
- * @author Robert C. Duvall
+ * A modified quiz generator
+ Ryan Ferner, rjf19
  */
+$(document).ready(function(){
 
 // the possible questions in the quiz
-var questions = [
-    {
-        question: 'What is 2*5?',
-        choices: [2, 5, 10, 15, 20],
-        correctAnswer: 2
-    },
-    {
-        question: 'What is 3*6?',
-        choices: [3, 6, 9, 12, 18],
-        correctAnswer: 4
-    },
-    {
-        question: 'What is 8*9?',
-        choices: [72, 99, 108, 134, 156],
-        correctAnswer: 0
-    },
-    {
-        question: 'What is 1*7?',
-        choices: [4, 5, 6, 7, 8],
-        correctAnswer: 3
-    },
-    {
-        question: 'What is 8*8?',
-        choices: [20, 30, 40, 50, 64],
-        correctAnswer: 4
-    }
-];
+var fragen = $.getJSON( "questions.json", function() {
+  console.log( "Questions Loaded" );
+})
+console.log(fragen);
+
+var questions = [];
+for (frage in fragen){
+    questions.push(frage);
+    ///Why doesn't this work?!?!!
+}
+console.log(questions);
+
 var quiz = document.getElementById('quiz');
 var questionsCompleted = 0;
 
 
+    
+    
 // returns a random element from a given list
 function randomElement(list) {
     return list[Math.floor(Math.random() * list.length)];
@@ -117,3 +104,4 @@ document.getElementById('next').addEventListener('click', nextQuestion, false);
 
 // display initial question
 displayQuestion();
+});
